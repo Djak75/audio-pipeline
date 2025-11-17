@@ -1,6 +1,7 @@
 import yaml
 from pathlib import Path
 from pydub import AudioSegment
+from pydub.generators import WhiteNoise
 
 
 def load_config(path):
@@ -20,11 +21,20 @@ def load_audio(file_path: Path):
 
 def apply_bandpass(audio, low_cutoff, high_cutoff):
     """
-    Applique un effet passe-bande simple : on utilise un filtre passe-haut suivi d'un filtre passe-bas.
+    Applique un effet passe-bande simple : on utilise un filtre passe-haut suivi d'un filtre passe-bas
     """
     audio = audio.high_pass_filter(low_cutoff)
     audio = audio.low_pass_filter(high_cutoff)
     return audio
+
+
+def apply_mixnoise(audio, snr_db):
+    """
+    Ajoute un bruit blanc simple basé sur le SNR spécifié.
+    """
+    noise = WhiteNoise().to_audio_segment(duration=len(audio)) # Génère du bruit blanc
+    noise = noise - snr_db # On baisse le niveau du bruit pour obtenir le SNR désiré
+    return audio.overlay(noise)
 
 
 def main():
@@ -54,6 +64,9 @@ def main():
                 low = step.get("low_cutoff", 1000)
                 high = step.get("high_cutoff", 4000)
                 audio = apply_bandpass(audio, low, high)
+
+            elif step["name"] == "mixnoise":
+                audio = apply_mixnoise(audio, step.get("snr_db", 50))
 
         # On exporte le fichier final
         output_file = output_dir / f"{audio_path.stem}_augmented.wav"

@@ -9,6 +9,9 @@ pipeline:
     low_cutoff: 1000
     high_cutoff: 4000
 
+  - name: "mixnoise"
+    snr_db: 50
+
 output_formats:
   - "wav"
   - "mp3"
