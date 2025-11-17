@@ -54,6 +54,7 @@ def main():
     output_dir = Path(config["output_dir"])
     files = config["files"]
     pipeline = config["pipeline"]  # On récupère la liste des effets
+    output_formats = config.get("output_formats", ["wav"])  # Formats de sortie par défaut
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -80,11 +81,12 @@ def main():
             elif step["name"] == "pitchshift":
                 audio = apply_pitchshift(audio, step.get("semitones", -2))
 
-        # On exporte le fichier final
-        output_file = output_dir / f"{audio_path.stem}_augmented.wav"
-        audio.export(output_file, format="wav")
+        # On exporte le fichier final dans tous les formats demandés
+        for format in output_formats:
+            output_file = output_dir / f"{audio_path.stem}_augmented.{format}"
+            audio.export(output_file, format=format)
 
-        print(f" -> Fichier généré dans : {output_file}")
+            print(f" -> Fichier généré dans : {output_file}")
 
 
 if __name__ == "__main__":
