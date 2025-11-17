@@ -4,9 +4,9 @@ Par **Arailym Pernebay** • **Chaimae Mehdaoui** • **Jawad Berrhili**
 
 ## Présentation du projet
 
-Ce projet a été réalisé dans le cadre d’un **brief d’une journée**.
-L’objectif : **construire un pipeline simple et reproductible de traitement audio**, configurable grâce à un fichier YAML.
-Le pipeline charge un ou plusieurs fichiers audio, applique une série d’effets (définis dans le YAML) puis génère une version augmentée de ces fichiers dans plusieurs formats (WAV, MP3, etc.).
+Ce projet a été réalisé dans le cadre d’un **brief d’une journée**.  
+L’objectif : **construire un pipeline simple et reproductible de traitement audio**, configurable grâce à un fichier YAML.  
+Le pipeline charge un ou plusieurs fichiers audio, applique une série d’effets (définis dans le YAML) puis génère une version augmentée de ces fichiers dans plusieurs formats (WAV, MP3, etc.).  
 Le rendu final est **simple, pédagogique, modulaire**, et facilement réutilisable.
 
 ## Objectifs pédagogiques
