@@ -6,9 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-# Fichiers audio de sortie
-data/output/
-
 # Distribution / packaging
 .Python
 build/
