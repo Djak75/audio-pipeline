@@ -1,0 +1,11 @@
+input_dir: "data/input"
+output_dir: "data/output"
+
+files:
+  - "audio.wav"   
+
+pipeline: []
+
+output_formats:
+  - "wav"
+  - "mp3"
