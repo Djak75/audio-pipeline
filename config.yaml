@@ -4,7 +4,10 @@ output_dir: "data/output"
 files:
   - "audio.wav"   
 
-pipeline: []
+pipeline:
+  - name: "bandpass"
+    low_cutoff: 1000
+    high_cutoff: 4000
 
 output_formats:
   - "wav"
