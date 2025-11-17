@@ -37,6 +37,15 @@ def apply_mixnoise(audio, snr_db):
     return audio.overlay(noise)
 
 
+def apply_pitchshift(audio, semitones):
+    """
+    Change la hauteur du son sans changer la durée.
+    """
+    factor = 2 ** (semitones / 12) # Calcul du facteur de changement de fréquence
+    shifted = audio._spawn(audio.raw_data, overrides={"frame_rate": int(audio.frame_rate * factor)})
+    return shifted.set_frame_rate(audio.frame_rate)
+
+
 def main():
     # On charge la configuration
     config = load_config("config.yaml")
@@ -67,6 +76,9 @@ def main():
 
             elif step["name"] == "mixnoise":
                 audio = apply_mixnoise(audio, step.get("snr_db", 50))
+
+            elif step["name"] == "pitchshift":
+                audio = apply_pitchshift(audio, step.get("semitones", -2))
 
         # On exporte le fichier final
         output_file = output_dir / f"{audio_path.stem}_augmented.wav"

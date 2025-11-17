@@ -12,6 +12,9 @@ pipeline:
   - name: "mixnoise"
     snr_db: 50
 
+  - name: "pitchshift"
+    semitones: -2
+
 output_formats:
   - "wav"
   - "mp3"
