@@ -47,9 +47,9 @@ Le pipeline exécute les étapes suivantes :
 1. Lecture du fichier `config.yaml`
 2. Chargement des fichiers audio depuis `data/input`
 3. Application des effets dans l’ordre défini dans le YAML :
-- Bandpass → filtrage des fréquences (effet radio / téléphone)
-- Mixnoise → ajout de bruit blanc contrôlé
-- Pitchshift → voix plus aiguë ou plus grave
+- **Bandpass** → filtrage des fréquences (effet radio / téléphone)
+- **Mixnoise** → ajout de bruit blanc contrôlé
+- **Pitchshift** → voix plus aiguë ou plus grave
 4. Génération de nouvelles versions audio dans les formats choisis (`wav`, `mp3`, etc.)
 
 
@@ -103,6 +103,7 @@ Ce projet a été réalisé par :
 - Arailym Pernebay
 - Chaimae Mehdaoui
 - Jawad Berrhili 
+
 Travail collaboratif accompli dans un délai très court, avec une répartition claire, une bonne communication, et une volonté de produire un pipeline simple, propre et efficace.
 
 ## Conclusion
